@@ -1,7 +1,27 @@
-import "./App.css";
+import { Grid, GridItem, Show, Text } from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
 
 function App() {
-  return <div> hello world</div>;
+  return (
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`,
+      }}
+      templateColumns={{
+        base: "1fr",
+        lg: "200px 1fr",
+      }}
+    >
+      <GridItem area="nav">
+        <Navbar />
+      </GridItem>
+      <Show above="lg">
+        <GridItem area="aside"></GridItem>
+      </Show>
+      <GridItem area="main"></GridItem>
+    </Grid>
+  );
 }
 
 export default App;
