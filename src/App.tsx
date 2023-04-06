@@ -1,5 +1,6 @@
 import { Grid, GridItem, Show, Text } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
+import BooksGridComponent from "./components/BooksGridComponent";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       }}
       templateColumns={{
         base: "1fr",
-        lg: "200px 1fr",
+        lg: "150px 1fr",
       }}
     >
       <GridItem area="nav">
@@ -19,7 +20,9 @@ function App() {
       <Show above="lg">
         <GridItem area="aside"></GridItem>
       </Show>
-      <GridItem area="main"></GridItem>
+      <GridItem area="main">
+        <BooksGridComponent />
+      </GridItem>
     </Grid>
   );
 }

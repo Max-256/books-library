@@ -2,18 +2,15 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Books {
+export interface Book {
   id: number;
   title: string;
   authors: string;
-}
-
-interface FetchBooksResponse {
-  results: Books[];
+  image_url: string;
 }
 
 const useBooks = () => {
-  const [books, setBooks] = useState<Books[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -22,10 +19,10 @@ const useBooks = () => {
 
     setLoading(true);
     apiClient
-      .get<FetchBooksResponse>("/books")
+      .get<Book[]>("/books")
       .then((res) => {
         setLoading(false);
-        setBooks(res.data.results);
+        setBooks(res.data);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
