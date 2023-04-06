@@ -8,7 +8,7 @@ interface Props {
 
 const BookCard = ({ book }: Props) => {
   return (
-    <Card direction="row" overflow="hidden" variant="elevated">
+    <Card direction="row" overflow="hidden" variant="outline">
       <Image objectFit="cover" maxW="100px" src={book.image_url} alt="" />
 
       <Stack>

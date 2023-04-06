@@ -7,6 +7,7 @@ export interface Book {
   title: string;
   authors: string;
   image_url: string;
+  genre_list: string;
 }
 
 const useBooks = () => {
