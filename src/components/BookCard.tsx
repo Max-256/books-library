@@ -21,6 +21,7 @@ const BookCard = ({ book }: Props) => {
         <CardBody>
           <Heading size="md">{book.title || "Not Available"}</Heading>
           <Text py="2">Author: {book.authors || "Unknown"}</Text>
+          <Text>{book.rating}</Text>
         </CardBody>
       </Stack>
     </Card>

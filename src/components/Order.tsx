@@ -6,16 +6,16 @@ interface Props {
   onPath: (path: string) => void;
 }
 
-const Sort = ({ onSort, onPath }: Props) => {
+const Order = ({ onSort, onPath }: Props) => {
   const sortOrder = [
-    { value: "asc", label: "Ascending", path: "title" },
-    { value: "desc", label: "Descending", path: "title" },
+    { value: "asc", label: "Low rating books", path: "rating" },
+    { value: "desc", label: "High rating books", path: "rating" },
   ];
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Sort by Title
+        Order by rating
       </MenuButton>
       <MenuList>
         {sortOrder.map((item) => (
@@ -35,4 +35,4 @@ const Sort = ({ onSort, onPath }: Props) => {
   );
 };
 
-export default Sort;
+export default Order;

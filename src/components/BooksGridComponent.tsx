@@ -5,17 +5,19 @@ import _ from "lodash";
 
 interface Props {
   selectedGenre: string;
-  sortOrder: "asc" | "desc";
+  sortOrder: "asc" | "desc" | "";
+  path: "title" | "rating" | "";
 }
 
-const BooksGridComponent = ({ selectedGenre, sortOrder }: Props) => {
+const BooksGridComponent = ({ selectedGenre, sortOrder, path }: Props) => {
   const { books, error } = useBooks();
 
   const filtered = selectedGenre
     ? books.filter((bk) => bk.genre_list?.includes(selectedGenre))
     : books;
 
-  const sorted = sortOrder ? _.orderBy(filtered, "title", sortOrder) : filtered;
+  const sorted =
+    sortOrder && path ? _.orderBy(filtered, path, sortOrder) : filtered;
 
   return (
     <SimpleGrid

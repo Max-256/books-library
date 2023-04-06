@@ -8,6 +8,7 @@ export interface Book {
   authors: string;
   image_url: string;
   genre_list: string;
+  rating: number;
 }
 
 const useBooks = () => {
