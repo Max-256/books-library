@@ -3,9 +3,10 @@ import genres from "../data/genres";
 
 interface Props {
   onSelectGenre: (genre: string) => void;
+  selectedGenre: string;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   return (
     <>
       <Heading marginTop={5} fontSize="3xl" marginBottom={3}>
@@ -20,6 +21,7 @@ const GenreList = ({ onSelectGenre }: Props) => {
               variant="link"
               fontSize="md"
               onClick={() => onSelectGenre(genre.name)}
+              fontWeight={selectedGenre === genre.name ? "bold" : "normal"}
             >
               {genre.name}
             </Button>
