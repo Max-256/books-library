@@ -3,9 +3,11 @@ import Navbar from "./components/Navbar";
 import BooksGridComponent from "./components/BooksGridComponent";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
+import Sort from "./components/Sort";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   return (
     <Grid
@@ -30,7 +32,11 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <BooksGridComponent selectedGenre={selectedGenre} />
+        <Sort onSort={(order) => setSortOrder(order)} />
+        <BooksGridComponent
+          sortOrder={sortOrder}
+          selectedGenre={selectedGenre}
+        />
       </GridItem>
     </Grid>
   );
