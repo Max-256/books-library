@@ -6,7 +6,6 @@ import {
   Heading,
   Text,
   HStack,
-  Badge,
 } from "@chakra-ui/react";
 
 import { Book } from "../hooks.ts/useBooks";
@@ -30,11 +29,11 @@ const BookCard = ({ book }: Props) => {
       <Stack>
         <CardBody>
           <Heading size="md">{book.title || "Not Available"}</Heading>
-          <Text py="2">Author: {book.authors || "Unknown"}</Text>
+          <Text py="2">Author: {book.authors || "Anonymous"}</Text>
           <Text>{book.Quote1}</Text>
           <HStack justifyContent="space-between">
-            <Text>Pages: {book.num_pages}</Text>
-            <BookRating rating={book.rating} />
+            <Text>Pages: {book.num_pages || "_"}</Text>
+            <BookRating rating={book.rating || 0} />
           </HStack>
         </CardBody>
       </Stack>

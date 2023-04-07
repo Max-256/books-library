@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 import _ from "lodash";
 import { useState } from "react";
 import { paginate } from "../utils/pagination";
+import BookCardSkeleton from "./BookCardSkeleton";
 
 interface Props {
   selectedGenre: string;
@@ -19,7 +20,7 @@ const BooksGridComponent = ({
   path,
   searchText,
 }: Props) => {
-  const { books } = useBooks();
+  const { books, isLoading } = useBooks();
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 30;
 
@@ -50,6 +51,10 @@ const BooksGridComponent = ({
 
   const paginatedData = paginate(results, currentPage, pageSize);
 
+  const skeletons = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ];
+
   return (
     <>
       <SimpleGrid
@@ -57,6 +62,7 @@ const BooksGridComponent = ({
         spacing={3}
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
       >
+        {isLoading && skeletons.map((sk) => <BookCardSkeleton key={sk} />)}
         {paginatedData.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
