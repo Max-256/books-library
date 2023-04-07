@@ -7,9 +7,15 @@ interface Props {
   selectedGenre: string;
   sortOrder: "asc" | "desc" | "";
   path: "title" | "rating" | "";
+  searchText: string;
 }
 
-const BooksGridComponent = ({ selectedGenre, sortOrder, path }: Props) => {
+const BooksGridComponent = ({
+  selectedGenre,
+  sortOrder,
+  path,
+  searchText,
+}: Props) => {
   const { books, error } = useBooks();
 
   const filtered = selectedGenre
@@ -19,13 +25,31 @@ const BooksGridComponent = ({ selectedGenre, sortOrder, path }: Props) => {
   const sorted =
     sortOrder && path ? _.orderBy(filtered, path, sortOrder) : filtered;
 
+  const results = searchText
+    ? sorted.filter(
+        (book) =>
+          book.title
+            ?.toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase()) ||
+          book.authors
+            ?.toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase()) ||
+          book.description
+            ?.toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase()) ||
+          book.genre_list
+            ?.toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase())
+      )
+    : sorted;
+
   return (
     <SimpleGrid
       padding={5}
       spacing={3}
       columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
     >
-      {sorted.map((book) => (
+      {results.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}
     </SimpleGrid>

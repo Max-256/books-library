@@ -10,6 +10,7 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("");
   const [path, setPath] = useState<"title" | "rating" | "">("");
+  const [seachText, setSearchText] = useState("");
 
   return (
     <Grid
@@ -23,7 +24,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <Navbar />
+        <Navbar onSearch={(seachText) => setSearchText(seachText)} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
@@ -51,6 +52,7 @@ function App() {
         <BooksGridComponent
           path={path}
           sortOrder={sortOrder}
+          searchText={seachText}
           selectedGenre={selectedGenre}
         />
       </GridItem>

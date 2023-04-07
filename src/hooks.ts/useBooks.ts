@@ -9,6 +9,7 @@ export interface Book {
   image_url: string;
   genre_list: string;
   rating: number;
+  description: string;
 }
 
 const useBooks = () => {
