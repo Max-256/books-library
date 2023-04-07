@@ -1,7 +1,10 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import useBooks from "../hooks.ts/useBooks";
 import BookCard from "./BookCard";
+import Pagination from "./Pagination";
 import _ from "lodash";
+import { useState } from "react";
+import { paginate } from "../utils/pagination";
 
 interface Props {
   selectedGenre: string;
@@ -17,6 +20,8 @@ const BooksGridComponent = ({
   searchText,
 }: Props) => {
   const { books, error } = useBooks();
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 30;
 
   const filtered = selectedGenre
     ? books.filter((bk) => bk.genre_list?.includes(selectedGenre))
@@ -43,16 +48,33 @@ const BooksGridComponent = ({
       )
     : sorted;
 
+  const paginatedData = paginate(results, currentPage, pageSize);
+
   return (
-    <SimpleGrid
-      padding={5}
-      spacing={3}
-      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-    >
-      {results.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
-    </SimpleGrid>
+    <>
+      <SimpleGrid
+        padding={5}
+        spacing={3}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      >
+        {paginatedData.map((book) => (
+          <BookCard key={book.id} book={book} />
+        ))}
+      </SimpleGrid>
+      <Box
+        marginTop={5}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Pagination
+          itemsCount={results.length}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      </Box>
+    </>
   );
 };
 
