@@ -57,18 +57,14 @@ const BooksGridComponent = ({
 
   return (
     <>
-      <SimpleGrid
-        padding={5}
-        spacing={3}
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-      >
+      <SimpleGrid spacing={3} columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}>
         {isLoading && skeletons.map((sk) => <BookCardSkeleton key={sk} />)}
         {paginatedData.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </SimpleGrid>
       <Box
-        marginTop={5}
+        marginTop={3}
         display="flex"
         alignItems="center"
         justifyContent="center"

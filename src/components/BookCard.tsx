@@ -29,7 +29,8 @@ const BookCard = ({ book }: Props) => {
       <Stack>
         <CardBody>
           <Heading size="md">{book.title || "Not Available"}</Heading>
-          <Text py="2">Author: {book.authors || "Anonymous"}</Text>
+
+          <Text opacity={0.8}> {book.authors || "Anonymous"}</Text>
           <Text>{book.Quote1}</Text>
           <HStack justifyContent="space-between">
             <Text>Pages: {book.num_pages || "_"}</Text>

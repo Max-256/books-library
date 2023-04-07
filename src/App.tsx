@@ -35,8 +35,8 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Box marginLeft={5} marginY={3}>
-          <Text fontSize="3xl" fontWeight="black">
+        <Box marginY={3}>
+          <Text fontSize="3xl" marginY={0} fontWeight="black">
             {selectedGenre || ""} Books
           </Text>
           <Flex>
@@ -46,7 +46,7 @@ function App() {
               }}
               onPath={(path) => setPath(path as "title" | "rating")}
             />
-            <Box marginLeft={5}>
+            <Box marginLeft={3}>
               <Order
                 onSort={(order) => setSortOrder(order as "asc" | "desc")}
                 onPath={(path) => setPath(path as "title" | "rating")}
