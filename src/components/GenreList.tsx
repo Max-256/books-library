@@ -8,27 +8,25 @@ interface Props {
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   return (
-    <>
-      <Heading marginTop={5} fontSize="3xl" marginBottom={3}>
+    <List>
+      <Heading marginTop={5} fontSize="2xl">
         Genres
       </Heading>
-      <List>
-        {genres.map((genre) => (
-          <ListItem key={genre.id} paddingY="5px">
-            <Button
-              whiteSpace="normal"
-              textAlign="left"
-              variant="link"
-              fontSize="md"
-              onClick={() => onSelectGenre(genre.name)}
-              fontWeight={selectedGenre === genre.name ? "bold" : "normal"}
-            >
-              {genre.name}
-            </Button>
-          </ListItem>
-        ))}
-      </List>
-    </>
+      {genres.map((genre) => (
+        <ListItem key={genre.id} paddingY="5px">
+          <Button
+            whiteSpace="normal"
+            textAlign="left"
+            variant="link"
+            fontSize="md"
+            onClick={() => onSelectGenre(genre.name)}
+            fontWeight={selectedGenre === genre.name ? "bold" : "normal"}
+          >
+            {genre.name}
+          </Button>
+        </ListItem>
+      ))}
+    </List>
   );
 };
 

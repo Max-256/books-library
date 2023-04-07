@@ -19,7 +19,7 @@ const BooksGridComponent = ({
   path,
   searchText,
 }: Props) => {
-  const { books, error } = useBooks();
+  const { books } = useBooks();
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 30;
 

@@ -35,20 +35,25 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex marginLeft={5} marginTop={5}>
-          <Sort
-            onSort={(order) => {
-              setSortOrder(order as "asc" | "desc");
-            }}
-            onPath={(path) => setPath(path as "title" | "rating")}
-          />
-          <Box marginLeft={5}>
-            <Order
-              onSort={(order) => setSortOrder(order as "asc" | "desc")}
+        <Box marginLeft={5} marginY={3}>
+          <Text fontSize="3xl" fontWeight="black">
+            {selectedGenre || ""} Books
+          </Text>
+          <Flex>
+            <Sort
+              onSort={(order) => {
+                setSortOrder(order as "asc" | "desc");
+              }}
               onPath={(path) => setPath(path as "title" | "rating")}
             />
-          </Box>
-        </Flex>
+            <Box marginLeft={5}>
+              <Order
+                onSort={(order) => setSortOrder(order as "asc" | "desc")}
+                onPath={(path) => setPath(path as "title" | "rating")}
+              />
+            </Box>
+          </Flex>
+        </Box>
         <BooksGridComponent
           path={path}
           sortOrder={sortOrder}

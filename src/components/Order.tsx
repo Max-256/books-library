@@ -8,14 +8,14 @@ interface Props {
 
 const Order = ({ onSort, onPath }: Props) => {
   const sortOrder = [
-    { value: "asc", label: "Low rating books", path: "rating" },
-    { value: "desc", label: "High rating books", path: "rating" },
+    { value: "desc", label: "High rated", path: "rating" },
+    { value: "asc", label: "Low rated", path: "rating" },
   ];
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order by rating
+        By rating
       </MenuButton>
       <MenuList>
         {sortOrder.map((item) => (
