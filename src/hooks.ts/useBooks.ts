@@ -10,6 +10,8 @@ export interface Book {
   genre_list: string;
   rating: number;
   description: string;
+  Quote1: string;
+  num_pages: number;
 }
 
 const useBooks = () => {
